@@ -14,12 +14,13 @@ public class RobotSoccerSimulation extends JPanel {
     private static final double WIDTH = 400;
     private static final double HEIGHT = 600;
 
-    // Simulation parameters
-    private static final double PLAYER_RADIUS = 15;
-    private static final double ENEMY_RADIUS = 20;
-    private static final double PLAYER_SPEED = 1.3;
-    private static final double ENEMY_SPEED = 1.8;
-    private static final double FRICTION = 0.0009;
+    //Simulation parameters
+    static double PLAYER_RADIUS;
+    static double ENEMY_RADIUS;
+    static double PLAYER_SPEED;
+    static double ENEMY_SPEED;
+    static double FRICTION;
+    
 
     private volatile String endMessage;
 
@@ -145,6 +146,12 @@ public class RobotSoccerSimulation extends JPanel {
     }
 
     public static void main(String[] args) {
+        PLAYER_RADIUS = Double.parseDouble(args[0]);
+        ENEMY_RADIUS = Double.parseDouble(args[1]);
+        PLAYER_SPEED = Double.parseDouble(args[2]);
+        ENEMY_SPEED = Double.parseDouble(args[3]);
+        FRICTION = Double.parseDouble(args[4]);
+
         SwingUtilities.invokeLater(() -> {
             var panel = new RobotSoccerSimulation();
             panel.setBackground(Color.GREEN.brighter());
