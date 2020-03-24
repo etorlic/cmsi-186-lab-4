@@ -13,14 +13,13 @@ public class RobotSoccerSimulation extends JPanel {
     // The soccer field
     private static final double WIDTH = 400;
     private static final double HEIGHT = 600;
-
-    //Simulation parameters
-    static double PLAYER_RADIUS;
-    static double ENEMY_RADIUS;
-    static double PLAYER_SPEED;
-    static double ENEMY_SPEED;
-    static double FRICTION;
-    
+    /*
+    private static double PLAYER_RADIUS;
+    private static double ENEMY_RADIUS;
+    private static double PLAYER_SPEED;
+    private static double ENEMY_SPEED;
+    private static double FRICTION;
+    */
 
     private volatile String endMessage;
 
@@ -146,11 +145,11 @@ public class RobotSoccerSimulation extends JPanel {
     }
 
     public static void main(String[] args) {
-        PLAYER_RADIUS = Double.parseDouble(args[0]);
-        ENEMY_RADIUS = Double.parseDouble(args[1]);
-        PLAYER_SPEED = Double.parseDouble(args[2]);
-        ENEMY_SPEED = Double.parseDouble(args[3]);
-        FRICTION = Double.parseDouble(args[4]);
+        final double PLAYER_RADIUS = Double.parseDouble(args[0]);
+        final double ENEMY_RADIUS = Double.parseDouble(args[1]);
+        final double PLAYER_SPEED = Double.parseDouble(args[2]);
+        final double ENEMY_SPEED = Double.parseDouble(args[3]);
+        final double FRICTION = Double.parseDouble(args[4]);
 
         SwingUtilities.invokeLater(() -> {
             var panel = new RobotSoccerSimulation();
