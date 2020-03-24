@@ -13,13 +13,12 @@ public class RobotSoccerSimulation extends JPanel {
     // The soccer field
     private static final double WIDTH = 400;
     private static final double HEIGHT = 600;
-    /*
+    
     private static double PLAYER_RADIUS;
     private static double ENEMY_RADIUS;
     private static double PLAYER_SPEED;
     private static double ENEMY_SPEED;
     private static double FRICTION;
-    */
 
     private volatile String endMessage;
 
@@ -59,12 +58,7 @@ public class RobotSoccerSimulation extends JPanel {
         }
     }
 
-    private static Ball[] balls = new Ball[] { 
-        new Ball(0.0, HEIGHT, PLAYER_RADIUS, PLAYER_SPEED, Color.BLUE),
-        new Ball(WIDTH * 0.25, 40, ENEMY_RADIUS, ENEMY_SPEED, Color.RED),
-        new Ball(WIDTH * 0.75, 40, ENEMY_RADIUS, ENEMY_SPEED, Color.RED),
-        new Ball(WIDTH / 2, HEIGHT / 2, ENEMY_RADIUS, ENEMY_SPEED, Color.RED) 
-    };
+    private static Ball[] balls;
 
     private static class Goal {
         double x = WIDTH / 2;
@@ -145,11 +139,27 @@ public class RobotSoccerSimulation extends JPanel {
     }
 
     public static void main(String[] args) {
-        final double PLAYER_RADIUS = Double.parseDouble(args[0]);
-        final double ENEMY_RADIUS = Double.parseDouble(args[1]);
-        final double PLAYER_SPEED = Double.parseDouble(args[2]);
-        final double ENEMY_SPEED = Double.parseDouble(args[3]);
-        final double FRICTION = Double.parseDouble(args[4]);
+        if (args.length != 5) {
+            throw new IllegalArgumentException("There must be 5 arguments");
+        }
+        for (var i = 0; i < args.length; i++) {
+            if (Double.parseDouble(args[i]) < 0) {
+                throw new IllegalArgumentException("No values should be negative");
+            }
+        }
+        
+        PLAYER_RADIUS = Double.parseDouble(args[0]);
+        ENEMY_RADIUS = Double.parseDouble(args[1]);
+        PLAYER_SPEED = Double.parseDouble(args[2]);
+        ENEMY_SPEED = Double.parseDouble(args[3]);
+        FRICTION = Double.parseDouble(args[4]);
+
+        balls = new Ball[] {
+            new Ball(0.0, HEIGHT, PLAYER_RADIUS, PLAYER_SPEED, Color.BLUE),
+            new Ball(WIDTH * 0.25, 40, ENEMY_RADIUS, ENEMY_SPEED, Color.RED),
+            new Ball(WIDTH * 0.75, 40, ENEMY_RADIUS, ENEMY_SPEED, Color.RED),
+            new Ball(WIDTH / 2, HEIGHT / 2, ENEMY_RADIUS, ENEMY_SPEED, Color.RED)
+        };
 
         SwingUtilities.invokeLater(() -> {
             var panel = new RobotSoccerSimulation();
