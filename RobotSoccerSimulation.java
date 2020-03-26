@@ -147,7 +147,7 @@ public class RobotSoccerSimulation extends JPanel {
                 throw new IllegalArgumentException("No values should be negative");
             }
         }
-        
+
         PLAYER_RADIUS = Double.parseDouble(args[0]);
         ENEMY_RADIUS = Double.parseDouble(args[1]);
         PLAYER_SPEED = Double.parseDouble(args[2]);
